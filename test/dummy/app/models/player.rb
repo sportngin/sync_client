@@ -1,5 +1,5 @@
 class Player < ActiveRecord::Base
-  include PubSubClient::Publisher
+  include SyncClient::Publisher
   publish_changes_of :name, :id, to: :dummy
 
   def puts_name

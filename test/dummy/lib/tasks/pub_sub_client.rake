@@ -1,5 +1,5 @@
-require 'pub_sub_client/tasks'
+require 'sync_client/tasks'
 
-task "pub_sub_client:setup" => :environment do
+task "sync_client:setup" => :environment do
 
 end

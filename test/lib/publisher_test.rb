@@ -18,7 +18,7 @@ class PublisherTest < ActiveSupport::TestCase
       setup do
         @new_player = Player.new(:name => "Joe")
         @player = Player.create(:name => 'foo')
-        @message = PubSubClient::PubMessage.new(:action => :create)
+        @message = SyncClient::PubMessage.new(:action => :create)
         @message.stubs(:publish).returns(true)
       end
 

@@ -1,5 +1,5 @@
 module Jobs
-  module PubSubClientJobs
+  module SyncClientJobs
     class PublisherJob
       include Resque::Plugins::UniqueJob
       extend ::Resque::Metrics
@@ -7,7 +7,7 @@ module Jobs
       @queue = :high
 
       def self.perform(message_attributes)
-        message = ::PubSubClient::PubMessage.new(message_attributes)
+        message = ::SyncClient::PubMessage.new(message_attributes)
         message.synchronous_publish
       end
     end

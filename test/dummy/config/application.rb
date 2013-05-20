@@ -3,7 +3,7 @@ require File.expand_path('../boot', __FILE__)
 require 'rails/all'
 
 Bundler.require(*Rails.groups)
-require "pub_sub_client"
+require "sync_client"
 
 module Dummy
   class Application < Rails::Application

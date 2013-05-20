@@ -6,7 +6,7 @@ require "rails/test_help"
 require 'test/unit'
 require 'shoulda'
 require 'simplecov'
-require 'pub_sub_client'
+require 'sync_client'
 SimpleCov.start 'rails'
 
 Rails.backtrace_cleaner.remove_silencers!

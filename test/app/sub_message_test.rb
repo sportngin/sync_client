@@ -4,7 +4,10 @@ class SubMessageTest < ActiveSupport::TestCase
   context "SubMessage" do
     context "ClassMethods" do
       setup do
-        @message = ::PubSubClient::SubMessage.new(:object_type => 'Dummy::Game', :action => :update)
+        @message = ::SyncClient::SubMessage.new(
+          :object_type => 'Dummy::Game',
+          :object_attributes => {:id => 1, :name => 'game', :invalid => 'invalid'},
+          :action => :update)
       end
 
       should "send action to valid message" do
@@ -20,6 +23,12 @@ class SubMessageTest < ActiveSupport::TestCase
         @message.action = 'invalid'
         assert_equal false, @message.process
       end
+
+      should "create message_handler with attributes" do
+        assert_equal Game, @message.message_handler.handler
+        assert_equal [:update, :create, :destroy], @message.message_handler.actions
+      end
+
     end
   end
 end

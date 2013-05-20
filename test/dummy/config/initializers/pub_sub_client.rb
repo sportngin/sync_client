@@ -1,4 +1,4 @@
-PubSubClient.config do |config|
+SyncClient.config do |config|
 
   config.queuel do |c|
     # c.default_queue 'venue_service'

@@ -9,7 +9,7 @@ class PubMessageTest < ActiveSupport::TestCase
       end
 
       should "queue publish" do
-        Resque.expects(:enqueue).with(Jobs::PubSubClientJobs::PublisherJob, @message.attributes).returns(true)
+        Resque.expects(:enqueue).with(Jobs::SyncClientJobs::PublisherJob, @message.attributes).returns(true)
         @message.publish
       end
 

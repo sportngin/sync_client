@@ -15,7 +15,7 @@ GIT
 PATH
   remote: .
   specs:
-    pub_sub_client (0.0.1)
+    sync_client (0.0.1)
       iron_mq
       rails (~> 3.2.0)
       typhoid
@@ -170,8 +170,8 @@ PLATFORMS
 
 DEPENDENCIES
   debugger
+  iron_mq
   mocha
-  pub_sub_client!
   queuel!
   resque
   resque-loner
@@ -180,4 +180,5 @@ DEPENDENCIES
   simplecov
   sqlite3
   strong_parameters
+  sync_client!
   typhoid!

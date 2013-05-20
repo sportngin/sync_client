@@ -1,5 +1,4 @@
-class Game < PubSubClient::ServiceResource::Base
-  field :id
+class Game < SyncClient::ServiceResource::Base
   field :name
 
   def create
@@ -8,9 +7,5 @@ class Game < PubSubClient::ServiceResource::Base
 
   def update
     return true
-  end
-
-  def destroy
-    return false
   end
 end
