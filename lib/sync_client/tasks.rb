@@ -16,8 +16,6 @@ namespace :sync_client do
       rescue Exception => e
         puts "exception occrued: #{e.message}"
         puts "exception occrued: #{e.backtrace}"
-        # TODO log failure
-        # return false to requeue the message, perhaps in failure queue
         false
       end
     end

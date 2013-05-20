@@ -16,12 +16,12 @@ class SubMessageTest < ActiveSupport::TestCase
 
       should "skip message object " do
         @message.object_type = 'invalid'
-        assert_equal false, @message.process
+        assert_equal true, @message.process
       end
 
       should "skip message action" do
         @message.action = 'invalid'
-        assert_equal false, @message.process
+        assert_equal true, @message.process
       end
 
       should "create message_handler with attributes" do
