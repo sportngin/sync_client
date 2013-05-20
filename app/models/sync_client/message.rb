@@ -1,17 +1,15 @@
 module SyncClient
-  class Message < Typhoid::Resource
-    field :action
-    field :object_type
-    field :queues
-    field :object_attributes
+  class Message
+    attr_accessor :action
+    attr_accessor :object_type
+    attr_accessor :queues
+    attr_accessor :object_attributes
 
-    def initialize(attributes)
-      attributes.symbolize_keys!
-      object_type = attributes[:object_type]
-      self.queues = attributes[:queues]
-      self.action = attributes[:action]
-      self.object_type = object_type
-      self.object_attributes = attributes[:object_attributes]
+    def initialize(attrs)
+      attrs = {} unless attrs
+      attrs.each do |key, value|
+        send("#{key}=", value) if self.respond_to?("#{key}=")
+      end
     end
   end
 end

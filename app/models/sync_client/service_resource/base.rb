@@ -1,11 +1,9 @@
 module SyncClient
   module ServiceResource
-    class Base < Typhoid::Resource
-      field :id
-
+    class Base
 
       # add logic to handle params
-      def initialize(attrs={})
+      def initialize(attrs)
         attrs = {} unless attrs
         attrs.each do |key, value|
           send("#{key}=", value) if self.respond_to?("#{key}=")

@@ -5,20 +5,12 @@ GIT
     queuel (0.0.1)
       thread
 
-GIT
-  remote: git@github.com:sportngin/typhoid
-  revision: 59e7724725395c15fcc2276693c748c8a1e02e07
-  specs:
-    typhoid (0.0.2)
-      typhoeus (= 0.4.2)
-
 PATH
   remote: .
   specs:
     sync_client (0.0.1)
       iron_mq
       rails (~> 3.2.0)
-      typhoid
 
 GEM
   remote: http://rubygems.org/
@@ -62,7 +54,6 @@ GEM
     debugger-linecache (1.2.0)
     debugger-ruby_core_source (1.2.2)
     erubis (2.7.0)
-    ffi (1.7.0)
     hike (1.2.2)
     i18n (0.6.1)
     iron_core (0.6.2)
@@ -158,9 +149,6 @@ GEM
     treetop (1.4.12)
       polyglot
       polyglot (>= 0.3.1)
-    typhoeus (0.4.2)
-      ffi (~> 1.0)
-      mime-types (~> 1.18)
     tzinfo (0.3.37)
     vegas (0.1.11)
       rack (>= 1.0.0)
@@ -181,4 +169,3 @@ DEPENDENCIES
   sqlite3
   strong_parameters
   sync_client!
-  typhoid!

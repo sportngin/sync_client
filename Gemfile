@@ -5,7 +5,6 @@ source "http://rubygems.org"
 # development dependencies will be added by default to the :development group.
 gemspec
 
-gem 'typhoid', git: 'git@github.com:sportngin/typhoid'
 gem "resque"
 gem "resque-metrics"
 gem "resque-loner"

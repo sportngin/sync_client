@@ -1,5 +1,5 @@
 class Game < SyncClient::ServiceResource::Base
-  field :name
+  attr_accessor :name
 
   def create
     return true

@@ -17,7 +17,6 @@ Gem::Specification.new do |s|
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency "rails", "~> 3.2.0"
-  s.add_dependency "typhoid"
   s.add_dependency "iron_mq"
 
   s.add_development_dependency "simplecov"

@@ -1,11 +1,13 @@
 module SyncClient
   class SubMessage < Message
     def process
-      if message_handler and message_handler.actions.include?(action)
-        message_handler_class.send(action)
+      if message_handler and message_handler.actions.include?(action.to_sym)
+        return message_handler_class.send(action.to_sym)
       else
         # TODO: log invalid message
-        # Return false so message is not deleted from the queue
+        puts "==========================="
+        puts "message handler not defined"
+        puts "#{object_type} | #{action}"
         false
       end
     end

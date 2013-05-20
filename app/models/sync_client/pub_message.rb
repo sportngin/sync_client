@@ -2,7 +2,7 @@ module SyncClient
   class PubMessage < Message
 
     def publish
-      Resque.enqueue(Jobs::SyncClientJobs::PublisherJob, self.attributes)
+      Resque.enqueue(Jobs::SyncClientJobs::Publish, self)
     end
 
     def synchronous_publish
@@ -17,7 +17,7 @@ module SyncClient
 
     def object_type_with_service
       service = Rails.application.class.parent_name
-      "#{service}::#{attributes['object_type']}"
+      "#{service}::#{self.object_type}"
     end
   end
 end
