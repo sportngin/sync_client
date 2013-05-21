@@ -7,15 +7,14 @@ namespace :sync_client do
     ::Queuel.receive do |message|
       begin
         if message and message.body
-          puts "recieved message: #{message}"
+          SyncClient.logger.info("recieved message: #{message}")
           success = false
           success = SyncClient::SubMessage.new(JSON.parse(message.body)).process
-          puts "finished with: #{!!success}"
+          SyncClient.logger.info("finished with: #{!!success}")
           !!success
         end
       rescue Exception => e
-        puts "exception occrued: #{e.message}"
-        puts "exception occrued: #{e.backtrace}"
+        SyncClient.logger.error("#{e.message} \n #{e.backtrace}")
         false
       end
     end

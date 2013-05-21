@@ -5,9 +5,7 @@ module SyncClient
         return message_handler_class.send(action.to_sym)
       else
         # Logging handler not define, but return true to remove msg from queue
-        puts "==========================="
-        puts "message handler not defined"
-        puts "#{object_type} | #{action}"
+        SyncClient.logger.warn("message handler not defined #{object_type} | #{action}")
         true
       end
     end

@@ -43,16 +43,16 @@ module SyncClient
         :queues => queues,
         :action => action,
         :object_type => self.class.to_s,
-        :object_attributes => publishable_attributes)
+        :object_attributes => publisher_attributes)
     end
 
-    def publishable_attributes
+    def publisher_attributes
       if self.respond_to?(:aliased_fields)
         self.attributes.inject({}) { |attrs, (raw_key, raw_value)|
           if raw_key =='_id'
             attrs['id'] = raw_value
           else
-            attrs[Game.aliased_fields.invert.fetch(raw_key) { raw_key }] = raw_value
+            attrs[self.aliased_fields.invert.fetch(raw_key) { raw_key }] = raw_value
           end
           attrs
         }

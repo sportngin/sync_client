@@ -3,8 +3,10 @@ require 'sync_client/version'
 require "sync_client/engine"
 require 'sync_client/configurator'
 require 'queuel'
+require 'mono_logger'
 
 module SyncClient
+
   def self.version_string
     "SyncClient version #{SyncClient::VERSION}"
   end
@@ -23,5 +25,9 @@ module SyncClient
 
   def self.actions
     Configurator::ACTIONS
+  end
+
+  def self.logger
+    config.logger
   end
 end
