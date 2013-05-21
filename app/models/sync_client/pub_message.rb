@@ -6,6 +6,7 @@ module SyncClient
     end
 
     def synchronous_publish
+      SyncClient.logger.info("MQ LOG > Publishing:\n\t#{object_type}##{action}")
       queues.each do |queue|
         Queuel.with(queue).push self.to_json
       end
