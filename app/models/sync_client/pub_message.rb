@@ -6,9 +6,8 @@ module SyncClient
     end
 
     def synchronous_publish
-      SyncClient.logger.info("MQ LOG > Publishing:\n\t#{object_type}##{action}")
       queues.each do |queue|
-        Queuel.with(queue).push self.to_json
+        Queuel.with(queue_with_suffix(queue)).push self.to_json
       end
     end
 
@@ -19,6 +18,10 @@ module SyncClient
     def object_type_with_service
       service = Rails.application.class.parent_name
       "#{service}::#{self.object_type}"
+    end
+
+    def queue_with_suffix(queue)
+      SyncClient.queue_suffix ? "#{queue}_#{SyncClient.queue_suffix}" : queue
     end
   end
 end

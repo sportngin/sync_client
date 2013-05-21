@@ -4,10 +4,12 @@ module SyncClient
     private
     attr_writer :message_handlers
     attr_writer :logger
+    attr_writer :queue_suffix
 
     public
     attr_reader :message_handlers
     attr_reader :logger
+    attr_reader :queue_suffix
 
     ACTIONS = [:create, :update, :destroy]
 
@@ -22,6 +24,10 @@ module SyncClient
 
     def add_message_handler(message, handler, actions)
       message_handlers.add_message_handler message, handler, actions
+    end
+
+    def add_queue_suffix(queue_suffix)
+      self.queue_suffix = queue_suffix
     end
 
     def handlers

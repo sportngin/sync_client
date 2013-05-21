@@ -23,3 +23,11 @@ ActiveRecord::Schema.define do
     t.integer :id
   end
 end
+
+class ActiveSupport::TestCase
+  setup do
+    ::SyncClient.logger.stubs(:warn).returns(:true)
+    ::SyncClient.logger.stubs(:info).returns(:true)
+  end
+end
+

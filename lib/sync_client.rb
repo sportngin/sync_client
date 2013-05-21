@@ -30,4 +30,8 @@ module SyncClient
   def self.logger
     config.logger
   end
+
+  def self.queue_suffix
+    config.queue_suffix
+  end
 end
