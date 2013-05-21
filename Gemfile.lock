@@ -8,8 +8,9 @@ GIT
 PATH
   remote: .
   specs:
-    sync_client (0.0.1)
+    sync_client (0.0.2)
       rails (~> 3.2.0)
+      resque
 
 GEM
   remote: http://rubygems.org/
@@ -55,10 +56,6 @@ GEM
     erubis (2.7.0)
     hike (1.2.2)
     i18n (0.6.1)
-    iron_core (0.6.2)
-      rest (>= 2.2.0)
-    iron_mq (4.0.3)
-      iron_core (>= 0.5.1)
     journey (1.0.4)
     json (1.7.7)
     mail (2.5.4)
@@ -70,7 +67,6 @@ GEM
       metaclass (~> 0.0.1)
     mono_logger (1.0.1)
     multi_json (1.7.2)
-    net-http-persistent (2.8)
     polyglot (0.3.3)
     rack (1.4.5)
     rack-cache (1.2)
@@ -112,11 +108,6 @@ GEM
       resque (~> 1.0)
     resque-metrics (0.0.5)
       resque (~> 1.19)
-    rest (2.6.1)
-      net-http-persistent
-      rest-client (>= 0.3.0)
-    rest-client (1.6.7)
-      mime-types (>= 1.16)
     shoulda (3.4.0)
       shoulda-context (~> 1.0, >= 1.0.1)
       shoulda-matchers (~> 1.0, >= 1.4.1)
@@ -153,7 +144,6 @@ PLATFORMS
 
 DEPENDENCIES
   debugger
-  iron_mq
   mocha
   queuel!
   resque

@@ -6,6 +6,9 @@ source "http://rubygems.org"
 gemspec
 
 gem "queuel", git: 'git@github.com:sportngin/queuel'
+gem "resque"
+gem "resque-metrics"
+gem "resque-loner"
 
 # Declare any dependencies that are still in development here instead of in
 # your gemspec. These might include edge Rails or gems from your path or
