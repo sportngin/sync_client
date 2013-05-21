@@ -15,14 +15,7 @@ module SyncClient
       if File.directory?(file) && File.exists?(File.expand_path("#{file}/config/environment.rb"))
         require "rails"
         require File.expand_path("#{file}/config/environment.rb")
-        if defined?(::Rails) && ::Rails.respond_to?(:application)
-          # Rails 3
-          ::Rails.application.eager_load!
-        elsif defined?(::Rails::Initializer)
-          # Rails 2.3
-          $rails_rake_task = false
-          ::Rails::Initializer.run :load_application_classes
-        end
+        ::Rails.application.eager_load!
       elsif File.file?(file)
         require File.expand_path(file)
       end
