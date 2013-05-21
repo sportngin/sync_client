@@ -9,7 +9,6 @@ PATH
   remote: .
   specs:
     sync_client (0.0.1)
-      iron_mq
       rails (~> 3.2.0)
 
 GEM

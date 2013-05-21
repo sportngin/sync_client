@@ -10,17 +10,23 @@ Gem::Specification.new do |s|
   s.authors     = ["Bryce Schmidt"]
   s.email       = ["bryce.schmidt@sportngin.com"]
   s.homepage    = "http://www.sportngin.com"
-  s.summary     = "TODO: Summary of SyncClient."
-  s.description = "TODO: Description of SyncClient."
+  s.summary     = "Interface to keep attributes synchronized between services using a message queue"
+  s.description = "SyncClient is an interface for synchronizing attributes between services.
+    It provides both a means of publishing changes and subscibing to them"
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency "rails", "~> 3.2.0"
-  s.add_dependency "iron_mq"
 
+  s.add_development_dependency "iron_mq"
   s.add_development_dependency "simplecov"
   s.add_development_dependency 'shoulda'
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "mocha"
+  s.add_development_dependency "resque"
+  s.add_development_dependency "resque-metrics"
+  s.add_development_dependency "resque-loner"
+  s.add_development_dependency "iron_mq"
+  s.add_development_dependency 'debugger'
 end
