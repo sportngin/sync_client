@@ -19,6 +19,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rails", "~> 3.2.0"
   s.add_dependency "resque"
+  s.add_dependency "thor"
 
   s.add_development_dependency "simplecov"
   s.add_development_dependency 'shoulda'

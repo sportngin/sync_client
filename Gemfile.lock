@@ -8,9 +8,10 @@ GIT
 PATH
   remote: .
   specs:
-    sync_client (0.0.2)
+    sync_client (0.0.3)
       rails (~> 3.2.0)
       resque
+      thor
 
 GEM
   remote: http://rubygems.org/

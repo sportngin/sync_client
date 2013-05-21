@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+require 'sync_client/cli'
+
+SyncClient::CLI.start(ARGV)
