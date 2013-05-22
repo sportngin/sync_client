@@ -1,11 +1,12 @@
+require 'active_support/all'
+require 'rails'
+require 'queuel'
+
 require 'sync_client/publisher'
 require 'sync_client/version'
 require "sync_client/engine"
 require 'sync_client/configurator'
 require 'sync_client/worker'
-require 'queuel'
-require 'mono_logger'
-
 module SyncClient
 
   def self.version_string

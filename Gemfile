@@ -5,7 +5,6 @@ source "http://rubygems.org"
 # development dependencies will be added by default to the :development group.
 gemspec
 
-gem "queuel", git: 'git@github.com:sportngin/queuel'
 gem "resque"
 gem "resque-metrics"
 gem "resque-loner"

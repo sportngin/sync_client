@@ -1,4 +1,4 @@
-$:.push File.expand_path("../lib", __FILE__)
+$LOAD_PATH.unshift 'lib'
 
 # Maintain your gem's version:
 require "sync_client/version"
@@ -14,11 +14,16 @@ Gem::Specification.new do |s|
   s.description = "SyncClient is an interface for synchronizing attributes between services.
     It provides both a means of publishing changes and subscibing to them"
 
-  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
-  s.test_files = Dir["test/**/*"]
+  s.files         = `git ls-files`.split($/).reject{ |f| f =~ /^examples/ }
+  s.executables   = s.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
+  s.test_files    = Dir["test/**/*"]
+  s.require_paths =["lib"]
 
   s.add_dependency "rails", "~> 3.2.0"
   s.add_dependency "resque"
+  s.add_dependency "resque-metrics"
+  s.add_dependency "resque-loner"
+  s.add_dependency "queuel", "~> 0.1.0"
   s.add_dependency "thor"
 
   s.add_development_dependency "simplecov"

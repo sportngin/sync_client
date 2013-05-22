@@ -1,16 +1,12 @@
-GIT
-  remote: git@github.com:sportngin/queuel
-  revision: da576ff68c130ed0f26d630c2bd56ed02dfdf32d
-  specs:
-    queuel (0.0.1)
-      thread
-
 PATH
   remote: .
   specs:
     sync_client (0.0.3)
+      queuel (~> 0.1.0)
       rails (~> 3.2.0)
       resque
+      resque-loner
+      resque-metrics
       thor
 
 GEM
@@ -58,17 +54,20 @@ GEM
     hike (1.2.2)
     i18n (0.6.1)
     journey (1.0.4)
-    json (1.7.7)
+    json (1.8.0)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     metaclass (0.0.1)
-    mime-types (1.22)
+    mime-types (1.23)
     mocha (0.13.3)
       metaclass (~> 0.0.1)
     mono_logger (1.0.1)
     multi_json (1.7.2)
     polyglot (0.3.3)
+    queuel (0.1.0)
+      mono_logger
+      thread
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -146,7 +145,6 @@ PLATFORMS
 DEPENDENCIES
   debugger
   mocha
-  queuel!
   resque
   resque-loner
   resque-metrics
