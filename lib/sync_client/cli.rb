@@ -1,10 +1,6 @@
 require 'thor'
-require 'sync_client'
 module SyncClient
   class CLI < Thor
-    def initialize(args = [], opts = [], config = {})
-      super(args, opts, config)
-    end
 
     desc("work", "Start processing queue.")
     def work
@@ -14,8 +10,8 @@ module SyncClient
 
     protected
 
-    def load_enviroment(file = nil)
-      file ||= "."
+    def load_enviroment
+      file = "."
       if File.directory?(file) && File.exists?(File.expand_path("#{file}/config/environment.rb"))
         require "rails"
         require File.expand_path("#{file}/config/environment.rb")

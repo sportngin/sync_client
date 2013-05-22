@@ -6,13 +6,7 @@ namespace :sync_client do
   task :poll => :setup do
     ::Queuel.receive do |message|
       begin
-        if message and message.body
-          SyncClient.logger.info("Recieved Message:\n\t#{message}")
-          success = false
-          success = SyncClient::SubMessage.new(JSON.parse(message.body)).process
-          SyncClient.logger.info("Processed Message:\n\t#{!!success}")
-          !!success
-        end
+        SyncClient::SubMessage.new(JSON.parse(message.body)).process if message and message.body
       rescue Exception => e
         SyncClient.logger.error("Exception Occurred:\n\t#{e.message}\n\t#{e.backtrace}")
         false
