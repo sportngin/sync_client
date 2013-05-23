@@ -4,8 +4,8 @@ module SyncClient
 
     desc("work", "Start processing queue.")
     def work
-      load_enviroment()
-      SyncClient::Worker.new().work
+      load_enviroment
+      SyncClient::Worker.new.work
     end
 
     protected

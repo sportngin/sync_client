@@ -26,7 +26,7 @@ Gem::Specification.new do |s|
   s.add_dependency "resque"
   s.add_dependency "resque-metrics"
   s.add_dependency "resque-loner"
-  s.add_dependency "queuel", "~> 0.1.0"
+  s.add_dependency "queuel", "~> 0.2.0"
   s.add_dependency "thor"
 
   s.add_development_dependency "simplecov"
