@@ -1,22 +1,12 @@
-require 'thor'
 module SyncClient
-  class Poller < Thor
+  class Poller
 
     def self.run
-      load_enviroment
-      SyncClient::Worker.new.work
+      new.run
     end
 
-    private_class_method :new
-
-    protected
-
-    def self.load_enviroment
-      require File.expand_path("./config/environment.rb")
-      if defined?(::Rails) && ::Rails.respond_to?(:application)
-        # Rails 3
-        ::Rails.application.eager_load!
-      end
+    def run
+      SyncClient::Worker.new.work
     end
   end
 end
