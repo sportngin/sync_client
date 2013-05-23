@@ -6,7 +6,7 @@ require 'sync_client/version'
 require "sync_client/engine"
 require 'sync_client/configurator'
 require 'sync_client/worker'
-require 'sync_client/cli'
+require 'sync_client/poller'
 module SyncClient
 
   def self.version_string

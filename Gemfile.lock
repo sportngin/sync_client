@@ -1,13 +1,15 @@
 PATH
   remote: .
   specs:
-    sync_client (0.0.4)
+    sync_client (0.0.5)
+      daemons (~> 1.1.9)
       queuel (~> 0.2.0)
       rails (~> 3.2.0)
       resque
       resque-loner
       resque-metrics
       thor
+      thread
 
 GEM
   remote: https://rubygems.org/
@@ -44,6 +46,7 @@ GEM
       mocha (~> 0.13.2)
     builder (3.0.4)
     columnize (0.3.6)
+    daemons (1.1.9)
     debugger (1.6.0)
       columnize (>= 0.3.1)
       debugger-linecache (~> 1.2.0)
@@ -153,3 +156,4 @@ DEPENDENCIES
   simplecov
   sqlite3
   sync_client!
+  thread
