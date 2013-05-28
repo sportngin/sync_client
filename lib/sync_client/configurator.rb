@@ -15,6 +15,7 @@ module SyncClient
 
     def initialize
       self.message_handlers = Configurators::MessageHandlers.new
+      self.logger = Logger.new(STDOUT)
     end
 
     def queuel

@@ -7,5 +7,5 @@ SyncClient.config do |config|
   end
   # config.queue_suffix 'suffix'
   # config.add_message_object_handler object_name, handler_class, actions
-  # config.add_message_object_handler 'StatNgin::Game', 'Resource::StatNgin::Game', [:update, :create, :destroy]
+  config.add_message_handler 'Dummy::Game', 'Game', [:update, :create, :destroy]
 end
