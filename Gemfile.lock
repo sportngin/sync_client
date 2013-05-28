@@ -1,19 +1,17 @@
-GIT
-  remote: git@github.com:sportngin/queuel
-  revision: da576ff68c130ed0f26d630c2bd56ed02dfdf32d
-  specs:
-    queuel (0.0.1)
-      thread
-
 PATH
   remote: .
   specs:
-    sync_client (0.0.3)
+    sync_client (0.0.6)
+      daemons (~> 1.1.9)
+      queuel (~> 0.2.0)
       rails (~> 3.2.0)
       resque
+      resque-loner
+      resque-metrics
+      thor
 
 GEM
-  remote: http://rubygems.org/
+  remote: https://rubygems.org/
   specs:
     actionmailer (3.2.13)
       actionpack (= 3.2.13)
@@ -47,6 +45,7 @@ GEM
       mocha (~> 0.13.2)
     builder (3.0.4)
     columnize (0.3.6)
+    daemons (1.1.9)
     debugger (1.6.0)
       columnize (>= 0.3.1)
       debugger-linecache (~> 1.2.0)
@@ -68,6 +67,10 @@ GEM
     mono_logger (1.0.1)
     multi_json (1.7.2)
     polyglot (0.3.3)
+    queuel (0.2.0)
+      mono_logger
+      multi_json
+      thread
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -145,7 +148,6 @@ PLATFORMS
 DEPENDENCIES
   debugger
   mocha
-  queuel!
   resque
   resque-loner
   resque-metrics

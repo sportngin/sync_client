@@ -1,11 +1,10 @@
-source "http://rubygems.org"
+source "https://rubygems.org"
 
 # Declare your gem's dependencies in sync_client.gemspec.
 # Bundler will treat runtime dependencies like base dependencies, and
 # development dependencies will be added by default to the :development group.
 gemspec
 
-gem "queuel", git: 'git@github.com:sportngin/queuel'
 gem "resque"
 gem "resque-metrics"
 gem "resque-loner"

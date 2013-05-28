@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+require 'daemons'
+require 'sync_client'
+
+Daemons.run_proc('sync_client', :dir_mode => :script, :dir => 'tmp/pids') do
+  require_relative File.join('..', 'config', 'environment.rb')
+  SyncClient::Poller.run
+end
