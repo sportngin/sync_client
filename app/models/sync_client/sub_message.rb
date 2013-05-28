@@ -2,6 +2,7 @@ module SyncClient
   class SubMessage < Message
     def process
       success = false
+      SyncClient.logger.info("------------------------------------------")
       SyncClient.logger.info("Recieved Message: #{object_type}##{action}")
       if message_handler and message_handler.actions.include?(action.to_sym)
         success = message_handler_class.send(action.to_sym)
