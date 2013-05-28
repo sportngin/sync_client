@@ -3,8 +3,8 @@ module SyncClient
   class Configurator
     private
     attr_writer :message_handlers
-    attr_writer :logger
     attr_writer :queue_suffix
+    attr_writer :logger
 
     public
     attr_reader :message_handlers
@@ -15,7 +15,6 @@ module SyncClient
 
     def initialize
       self.message_handlers = Configurators::MessageHandlers.new
-      self.logger = Logger.new(STDOUT)
     end
 
     def queuel
@@ -26,12 +25,17 @@ module SyncClient
       message_handlers.add_message_handler message, handler, actions
     end
 
-    def add_queue_suffix(queue_suffix)
-      self.queue_suffix = queue_suffix
-    end
-
     def handlers
       message_handlers.message_handlers
     end
+
+    def set_queue_suffix(suffix)
+      self.queue_suffix = suffix
+    end
+
+    def set_logger(logger)
+      self.logger = logger
+    end
+
   end
 end

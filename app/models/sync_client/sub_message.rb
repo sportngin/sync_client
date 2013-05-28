@@ -1,13 +1,17 @@
 module SyncClient
   class SubMessage < Message
     def process
+      success = false
+      SyncClient.logger.info("------------------------------------------")
+      SyncClient.logger.info("Recieved Message: #{object_type}##{action}")
       if message_handler and message_handler.actions.include?(action.to_sym)
-        return message_handler_class.send(action.to_sym)
+        success = message_handler_class.send(action.to_sym)
       else
-        # Logging handler not define, but return true to remove msg from queue
-        SyncClient.logger.warn("MQ Log > Handler not Defined:\n\t#{object_type}##{action}")
-        true
+        success = true
+        SyncClient.logger.warn("MQ Log > Handler not Defined: #{object_type}##{action}")
       end
+      SyncClient.logger.info("Processed Message: #{!!success}")
+      !!success
     end
 
     def message_handler

@@ -7,12 +7,12 @@ module SyncClient
 
     def synchronous_publish
       queues.each do |queue|
-        Queuel.with(queue_with_suffix(queue)).push self.to_json
+        Queuel.with(queue_with_suffix(queue)).push self.package
       end
     end
 
-    def to_json
-      {:action => action, :object_type => object_type_with_service, :object_attributes => object_attributes}.to_json
+    def package
+      {:action => action, :object_type => object_type_with_service, :object_attributes => object_attributes}
     end
 
     def object_type_with_service
