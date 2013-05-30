@@ -1,4 +1,4 @@
-# MetadataClient
+# SyncClient
 
 This gem simplifies syncing data between services by using a resque and a message queue for guaranteed delivery and eventual consistency of data.
 
