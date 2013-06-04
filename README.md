@@ -1,6 +1,6 @@
 # SyncClient
 
-This gem simplifies syncing data between services by using a resque and a message queue for guaranteed delivery and eventual consistency of data.
+This gem simplifies syncing data between services by using a resque queue and a message queue for guaranteed delivery and eventual consistency of data.
 
 ## Installation
 
@@ -26,7 +26,7 @@ Edit configuation in `config/initializers/sync_client.rb`
 
 ## Usage
 
-Within the model you want to publish attributes to a service:
+Within the model you want to publish attributes to a service include something like the following:
 
 ```ruby
 class Team
@@ -34,6 +34,8 @@ class Team
   publish_changes_of :name, to: :queue
 end
 ```
+
+Rescue is used for publishing to ensure eventual delivery if the message queue does not respond.
 
 Run the message queue poller:
 
