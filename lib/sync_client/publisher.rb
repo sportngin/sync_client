@@ -35,7 +35,11 @@ module SyncClient
     end
 
     def publish_create
-      queue_message(:create).publish
+      queues = []
+      self.class.queue_attributes.each do |queue, attributes|
+        queues << queue if attributes.any?{|attr| !self.send("#{attr}").nil?}
+      end
+      queue_message(:update, queues).publish unless queues.empty?
     end
 
     def queue_message(action, queues = self.class.pub_queues)

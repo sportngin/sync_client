@@ -6,7 +6,7 @@ module SyncClient
     attr_accessor :object_attributes
 
     def initialize(attrs)
-      attrs = {} unless attrs
+      attrs = {} unless attrs and attrs.is_a?(Hash)
       attrs.each do |key, value|
         send("#{key}=", value) if self.respond_to?("#{key}=")
       end

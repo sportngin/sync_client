@@ -7,6 +7,8 @@ module SyncClient
 
     def synchronous_publish
       queues.each do |queue|
+        SyncClient.logger.info("------------------------------------------")
+        SyncClient.logger.info("Publishing Message: #{object_type}##{action}, To: #{queue}")
         Queuel.with(queue_with_suffix(queue)).push self.package
       end
     end

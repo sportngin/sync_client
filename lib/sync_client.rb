@@ -30,7 +30,9 @@ module SyncClient
   end
 
   def self.logger
-    config.logger
+    config.logger.tap { |log|
+      log.level = Logger::INFO
+    }
   end
 
   def self.queue_suffix
