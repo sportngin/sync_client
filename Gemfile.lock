@@ -1,14 +1,13 @@
 PATH
   remote: .
   specs:
-    sync_client (0.0.7)
+    sync_client (0.0.8)
       daemons (~> 1.1.9)
       queuel (~> 0.2.0)
       rails (~> 3.2.0)
       resque
       resque-loner
       resque-metrics
-      thor
 
 GEM
   remote: https://rubygems.org/

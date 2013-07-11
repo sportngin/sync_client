@@ -22,7 +22,6 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_dependency "rails", "~> 3.2.0"
-  s.add_dependency "thor"
   s.add_dependency "resque"
   s.add_dependency "resque-metrics"
   s.add_dependency "resque-loner"
