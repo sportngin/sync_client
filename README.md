@@ -34,7 +34,7 @@ class Team
   publish_changes_of :name, :color, to: :queue, for: [:update, :destroy], if: lambda{|team| !team.name.nil?}
     # options:
     #   to: name of queue for publishing (required)
-    #   for: callbacks for publishing
+    #   for: callbacks for publishing (default: :create, :update, :destroy)
     #   if/less: condition for publishing
 end
 ```
