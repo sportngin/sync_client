@@ -5,15 +5,15 @@ module SyncClient
 
     def process
       with_logging do
-        @success = message_handler_class.send(action.to_sym) if handler_present?
+        self.success = message_handler_class.send(action.to_sym) if handler_present?
       end
-      !!@success
+      !!success
     end
 
     def handler_present?
       return true if message_handler and message_handler.actions.include?(action.to_sym)
-      @error = "Handler not Defined: #{object_type}##{action}"
-      @success = true #still setting to true to remove message from queue
+      self.error = "Handler not Defined: #{object_type}##{action}"
+      self.success = true #still setting to true to remove message from queue
       return false
     end
 
@@ -29,8 +29,8 @@ module SyncClient
       SyncClient.logger.info("------------------------------------------")
       SyncClient.logger.info("Recieved Message: #{object_type}##{action}")
       yield
-      SyncClient.logger.info("Error Occured: #{@error}")
-      SyncClient.logger.info("Processed Message: #{!!@success}")
+      SyncClient.logger.info("Error Occured: #{error}")
+      SyncClient.logger.info("Processed Message: #{!!success}")
     end
   end
 end

@@ -6,7 +6,7 @@ module SyncClient
     end
 
     def synchronous_publish
-      Queuel.with(queue_with_suffix).push self.package
+      Queuel.with(queue_with_suffix).push package
     end
 
     def package
