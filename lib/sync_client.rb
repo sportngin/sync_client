@@ -2,6 +2,8 @@ require 'rails'
 require 'queuel'
 
 require 'sync_client/publisher'
+require 'sync_client/queue_publisher'
+require 'sync_client/sync_queue'
 require 'sync_client/version'
 require "sync_client/engine"
 require 'sync_client/configurator'

@@ -9,41 +9,28 @@ module SyncClient
     end
 
     module ClassMethods
-      def publish_changes_of(*attributes, queue)
-        @queue_attributes = {} unless @queue_attributes
-        @pub_queues = [] unless @pub_queues
-
-        queue = queue[:to]
-        @queue_attributes[queue] = attributes
-        @pub_queues << queue
+      def publish_changes_of(*attributes, options)
+        @queue_publisher = SyncClient::QueuePublisher.new unless @queue_publisher
+        @queue_publisher.add_publisher(attributes, options)
       end
 
-      attr_reader :queue_attributes
-      attr_reader :pub_queues
+      attr_reader :queue_publisher
+    end
+
+    def queue_publisher
+      self.class.queue_publisher
     end
 
     def publish_update
-      queues = []
-      self.class.queue_attributes.each do |queue, attributes|
-        queues << queue if attributes.any?{|attr| self.send("#{attr}_changed?")}
-      end
-      queue_message(:update, queues).publish unless queues.empty?
+      queue_publisher.publish(:update, self)
     end
 
     def publish_destroy
-      queue_message(:destroy).publish
+      queue_publisher.publish(:destroy, self)
     end
 
     def publish_create
-      queue_message(:create).publish
-    end
-
-    def queue_message(action, queues = self.class.pub_queues)
-      SyncClient::PubMessage.new(
-        :queues => queues,
-        :action => action,
-        :object_type => self.class.to_s,
-        :object_attributes => publisher_attributes)
+      queue_publisher.publish(:create, self)
     end
 
     def publisher_attributes
