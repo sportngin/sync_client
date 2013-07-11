@@ -1,17 +1,17 @@
 module SyncClient
   class QueuePublisher
-    attr_accessor :sync_queue
+    attr_accessor :sync_queues
 
     def initialize
-      self.sync_queue = []
+      self.sync_queues = []
     end
 
     def add_publisher(attributes, options)
-      self.sync_queue << SyncClient::SyncQueue.new(attributes, options)
+      self.sync_queues << SyncClient::SyncQueue.new(attributes, options)
     end
 
     def publish(action, object)
-      sync_queue.each do |sync_queue|
+      sync_queues.each do |sync_queue|
         queue_message(action, object, sync_queue.queue).publish if sync_queue.publishable?(action, object)
       end
     end

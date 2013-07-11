@@ -8,7 +8,7 @@ class PublisherTest < ActiveSupport::TestCase
       end
 
       should "respond to queue_publisher with defined resource" do
-        assert_not_nil @player.queue_publisher.sync_queue
+        assert_not_nil @player.queue_publisher.sync_queues
       end
 
     end

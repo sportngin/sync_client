@@ -14,15 +14,15 @@ class QueuePublisherTest < ActiveSupport::TestCase
       end
 
       should "initialize with sync_queue" do
-        assert_not_nil @publisher.sync_queue
+        assert_not_nil @publisher.sync_queues
       end
 
       should "add sync queues with attributes and options" do
-        assert_equal [:name], @publisher.sync_queue.first.attributes
+        assert_equal [:name], @publisher.sync_queues.first.attributes
       end
 
       should "queue message on publish" do
-        @sync_queue = @publisher.sync_queue.first
+        @sync_queue = @publisher.sync_queues.first
         @sync_queue.stubs(:publishable?).returns(:true)
         @publisher.expects(:queue_message).with(:create, @player, 'foo').returns(@message)
         @message.expects(:publish).returns(true)
