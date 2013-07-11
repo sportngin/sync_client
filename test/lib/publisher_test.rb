@@ -7,8 +7,8 @@ class PublisherTest < ActiveSupport::TestCase
         @player = Player.new
       end
 
-      should "respond to meta_resource_name with defined resource" do
-        assert_equal 1, @player.queue_publisher.sync_queue.count
+      should "respond to queue_publisher with defined resource" do
+        assert_not_nil @player.queue_publisher.sync_queue
       end
 
     end
@@ -17,20 +17,25 @@ class PublisherTest < ActiveSupport::TestCase
       setup do
         @new_player = Player.new(:name => "Joe")
         @player = Player.create(:name => 'foo')
-        @message = SyncClient::PubMessage.new(:action => :create)
-
-        @message.stubs(:queue_publisher).returns(true)
+        @publisher = SyncClient::QueuePublisher.new
       end
 
       should "publish on create" do
-
+        @new_player.stubs(:queue_publisher).returns(@publisher)
+        @publisher.expects(:publish).with(:create, @new_player).returns(true)
+        @new_player.save
       end
 
       should "publish on destoy" do
-
+        @player.stubs(:queue_publisher).returns(@publisher)
+        @publisher.expects(:publish).with(:destroy, @player).returns(true)
+        @player.destroy
       end
 
       should "publish on update" do
+        @player.stubs(:queue_publisher).returns(@publisher)
+        @publisher.expects(:publish).with(:update, @player).returns(true)
+        @player.save
       end
 
     end
