@@ -31,9 +31,14 @@ Within the model you want to publish attributes to a service include something l
 ```ruby
 class Team
   include SyncClient::Publisher
-  publish_changes_of :name, to: :queue
+  publish_changes_of :name, :color, to: :queue, for: [:update, :destroy], if: lambda{|team| !team.name.nil?}
+    # options:
+    #   to: name of queue for publishing (required)
+    #   for: callbacks for publishing
+    #   if/less: condition for publishing
 end
 ```
+
 
 Rescue is used for publishing to ensure eventual delivery if the message queue does not respond.
 
@@ -53,16 +58,16 @@ class Game < SyncClient::ServiceResource::Base
   attr_accessor :id
   attr_accessor :starts_at
   attr_accessor :ends_at
-  
+
   def create
     Game.create(:game_id => self.id, :starts_at => self.starts_at, :ends_at => self.ends_at)
   end
-  
+
   def update
     game = Game.find(self.id).first
     game.update_attributes(:starts_at => self.starts_at, :ends_at => self.ends_at)
   end
-  
+
   def destroy
     game = Game.find(self.id)
     game.each do |ga|
