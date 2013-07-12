@@ -5,7 +5,8 @@ class PubMessageTest < ActiveSupport::TestCase
     context "ClassMethods" do
       setup do
         @player = Player.create(:name => 'joe')
-        @message = @player.queue_message(:action)
+        queue_publisher = SyncClient::QueuePublisher.new
+        @message = queue_publisher.queue_message(:action, @player, 'dummy')
       end
 
       should "queue publish" do
@@ -14,8 +15,7 @@ class PubMessageTest < ActiveSupport::TestCase
       end
 
       should "copy object queues" do
-        assert_not_nil @message.queues
-        assert_equal @player.class.pub_queues, @message.queues
+        assert_not_nil @message.queue
       end
 
       should "wrap object type with service" do
@@ -23,8 +23,8 @@ class PubMessageTest < ActiveSupport::TestCase
       end
 
       should "push message to queues" do
-        queuel = Queuel.with(@message.queues.first)
-        Queuel.expects(:with).with(@message.queues.first).once.returns(queuel)
+        queuel = Queuel.with(@message.queue)
+        Queuel.expects(:with).with(@message.queue).once.returns(queuel)
         @message.synchronous_publish
       end
 
