@@ -8,6 +8,8 @@ class SubMessageTest < ActiveSupport::TestCase
           :object_type => 'Dummy::Game',
           :object_attributes => {:id => 1, :name => 'game', :invalid => 'invalid'},
           :action => :update)
+
+        @message.stubs(:handler).with
       end
 
       should "send action to valid message" do

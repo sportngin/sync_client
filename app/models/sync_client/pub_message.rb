@@ -6,8 +6,8 @@ module SyncClient
     end
 
     def synchronous_publish
-      queues.each do |queue|
-        Queuel.with(queue_with_suffix(queue)).push self.package
+      with_logging do
+        Queuel.with(queue_with_suffix).push package
       end
     end
 
@@ -17,11 +17,17 @@ module SyncClient
 
     def object_type_with_service
       service = Rails.application.class.parent_name
-      "#{service}::#{self.object_type}"
+      "#{service}::#{object_type}"
     end
 
-    def queue_with_suffix(queue)
+    def queue_with_suffix
       SyncClient.queue_suffix ? "#{queue}_#{SyncClient.queue_suffix}" : queue
+    end
+
+    def with_logging(&block)
+      SyncClient.logger.info("------------------------------------------")
+      SyncClient.logger.info("Publishing Message: #{object_type_with_service}")
+      yield
     end
   end
 end

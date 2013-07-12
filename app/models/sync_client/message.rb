@@ -2,7 +2,7 @@ module SyncClient
   class Message
     attr_accessor :action
     attr_accessor :object_type
-    attr_accessor :queues
+    attr_accessor :queue
     attr_accessor :object_attributes
 
     def initialize(attrs)
