@@ -3,7 +3,7 @@ module SyncClient
     extend ActiveSupport::Concern
 
     included do
-      after_update :publish_update
+      before_update :publish_update
       after_destroy :publish_destroy
       after_create :publish_create
     end
