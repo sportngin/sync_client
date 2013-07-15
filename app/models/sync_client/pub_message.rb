@@ -26,7 +26,8 @@ module SyncClient
 
     def with_logging(&block)
       SyncClient.logger.info("------------------------------------------")
-      SyncClient.logger.info("Publishing Message: #{object_type_with_service}")
+      SyncClient.logger.info("Publishing Message: #{object_type}##{action}")
+      SyncClient.logger.info("To: #{queue_with_suffix}")
       yield
     end
   end
