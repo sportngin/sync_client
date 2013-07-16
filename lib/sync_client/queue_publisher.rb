@@ -12,7 +12,7 @@ module SyncClient
 
     def publish(action, object)
       sync_queues.each do |sync_queue|
-        SyncClient.logger.warn("sync_queue queue blank: #{sync_queue.inspect}") if sync_queue.queue.blank?
+        SyncClient.logger.info("#{sync_queue.inspect}")
         queue_message(action, object, sync_queue.queue).publish if sync_queue.publishable?(action, object)
       end
     end
