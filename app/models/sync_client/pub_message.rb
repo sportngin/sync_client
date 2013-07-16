@@ -21,7 +21,7 @@ module SyncClient
     end
 
     def queue_with_suffix
-      SyncClient.queue_suffix ? "#{queue}_#{SyncClient.queue_suffix}" : queue
+      SyncClient.queue_suffix ? "#{queue}_#{SyncClient.queue_suffix}" : queue.to_s
     end
 
     def with_logging(&block)

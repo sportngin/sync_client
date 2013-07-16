@@ -6,6 +6,7 @@ module SyncClient
     def process
       with_logging do
         self.success = message_handler_class.send(action.to_sym) if handler_present?
+        SyncClient.logger.info("handler response: #{success}")
       end
       !!success
     end
