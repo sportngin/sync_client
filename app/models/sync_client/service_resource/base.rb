@@ -1,6 +1,7 @@
 module SyncClient
   module ServiceResource
     class Base
+      attr_accessor :error
 
       # add logic to handle params
       def initialize(attrs)

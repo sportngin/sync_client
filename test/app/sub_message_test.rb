@@ -27,8 +27,14 @@ class SubMessageTest < ActiveSupport::TestCase
       end
 
       should "create message_handler with attributes" do
-        assert_equal Game, @message.message_handler.handler
-        assert_equal [:update, :create, :destroy], @message.message_handler.actions
+        assert_equal Game, @message.handler_class.handler
+        assert_equal [:update, :create, :destroy], @message.handler_class.actions
+      end
+
+      should "access errors if set" do
+        @message.action = 'destroy'
+        assert_equal true, @message.process
+        assert_not_nil @message.error
       end
 
     end
