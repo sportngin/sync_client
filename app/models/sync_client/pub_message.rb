@@ -21,12 +21,13 @@ module SyncClient
     end
 
     def queue_with_suffix
-      SyncClient.queue_suffix ? "#{queue}_#{SyncClient.queue_suffix}" : queue
+      SyncClient.queue_suffix ? "#{queue}_#{SyncClient.queue_suffix}" : queue.to_s
     end
 
     def with_logging(&block)
       SyncClient.logger.info("------------------------------------------")
-      SyncClient.logger.info("Publishing Message: #{object_type_with_service}")
+      SyncClient.logger.info("Publishing Message: #{object_type}##{action}")
+      SyncClient.logger.info("To: #{queue_with_suffix}")
       yield
     end
   end

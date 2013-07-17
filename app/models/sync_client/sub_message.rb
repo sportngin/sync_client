@@ -1,28 +1,30 @@
 module SyncClient
   class SubMessage < Message
     attr_accessor :success
-    attr_accessor :error
 
     def process
       with_logging do
-        self.success = message_handler_class.send(action.to_sym) if handler_present?
+        self.success = message_handler.send(action.to_sym) if handler_present?
       end
       !!success
     end
 
     def handler_present?
-      return true if message_handler and message_handler.actions.include?(action.to_sym)
-      self.error = "Handler not Defined: #{object_type}##{action}"
+      return true if handler_class and handler_class.actions.include?(action.to_sym)
       self.success = true #still setting to true to remove message from queue
       return false
     end
 
-    def message_handler
+    def handler_class
       ::SyncClient.handlers[object_type]
     end
 
-    def message_handler_class
-      message_handler.handler.new(object_attributes)
+    def message_handler
+      @handler ||= handler_class.handler.new(object_attributes)
+    end
+
+    def error
+      message_handler.error if handler_class and message_handler.error
     end
 
     def with_logging(&block)

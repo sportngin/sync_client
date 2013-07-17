@@ -9,4 +9,9 @@ class Game < SyncClient::ServiceResource::Base
   def update
     return true
   end
+
+  def destroy
+    self.error = 'invalid'
+    return true
+  end
 end
