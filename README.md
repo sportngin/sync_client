@@ -40,7 +40,7 @@ end
 ```
 
 
-Rescue is used for publishing to ensure eventual delivery if the message queue does not respond.
+Resque is used for publishing to ensure eventual delivery if the message queue does not respond.
 
 Run the message queue poller:
 
