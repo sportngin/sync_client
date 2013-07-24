@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   s.test_files    = s.files.grep(%r{^(test|spec|features)/})
   s.require_paths = ["lib"]
 
-  s.add_dependency "rails", "~> 3.2.0"
+  s.add_dependency "rails", "> 3.0.0"
   s.add_dependency "queuel", "~> 0.2.0"
   s.add_dependency "daemons", "~> 1.1.9"
 
