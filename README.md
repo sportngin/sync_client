@@ -40,7 +40,7 @@ end
 ```
 
 
-Resque is used for publishing to ensure eventual delivery if the message queue does not respond.
+A priority is used for publishing to ensure eventual delivery if the message queue does not respond. Supported priority queues include Delayed Job and Resque.
 
 Run the message queue poller:
 
