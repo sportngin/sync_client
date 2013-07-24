@@ -5,11 +5,13 @@ module SyncClient
     attr_writer :message_handlers
     attr_writer :queue_suffix
     attr_writer :logger
+    attr_writer :priority_queue
 
     public
     attr_reader :message_handlers
     attr_reader :logger
     attr_reader :queue_suffix
+    attr_reader :priority_queue
 
     ACTIONS = [:create, :update, :destroy]
 
@@ -36,6 +38,10 @@ module SyncClient
 
     def set_logger(logger)
       self.logger = logger
+    end
+
+    def set_priority_queue(queue)
+      self.priority_queue = queue.constantize
     end
 
   end

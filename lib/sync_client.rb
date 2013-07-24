@@ -38,4 +38,8 @@ module SyncClient
   def self.queue_suffix
     config.queue_suffix
   end
+
+  def self.priority_queue
+    config.priority_queue
+  end
 end
