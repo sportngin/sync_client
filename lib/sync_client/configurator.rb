@@ -18,6 +18,7 @@ module SyncClient
     def initialize
       self.message_handlers = Configurators::MessageHandlers.new
       self.logger = Logger.new(STDOUT)
+      self.priority_queue = SyncClient::InlineQueue
     end
 
     def queuel
