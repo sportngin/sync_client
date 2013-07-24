@@ -22,9 +22,6 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_dependency "rails", "~> 3.2.0"
-  s.add_dependency "resque"
-  s.add_dependency "resque-metrics"
-  s.add_dependency "resque-loner"
   s.add_dependency "queuel", "~> 0.2.0"
   s.add_dependency "daemons", "~> 1.1.9"
 
@@ -33,7 +30,4 @@ Gem::Specification.new do |s|
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "mocha"
   s.add_development_dependency 'debugger'
-  s.add_development_dependency "resque"
-  s.add_development_dependency "resque-metrics"
-  s.add_development_dependency "resque-loner"
 end

@@ -5,7 +5,8 @@ SyncClient.config do |config|
     # c.credentials token: 'asdufasdf8a7sd8fa7sdf', project_id: 'project_id'
     # c.engine :iron_mq
   end
-  # config.queue_suffix 'suffix'
+  config.set_priority_queue 'Resque'
+  # config.set_queue_suffix 'suffix'
   # config.add_message_object_handler object_name, handler_class, actions
   config.add_message_handler 'Dummy::Game', 'Game', [:update, :create, :destroy]
 end
