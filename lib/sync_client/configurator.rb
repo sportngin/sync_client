@@ -42,7 +42,7 @@ module SyncClient
     end
 
     def background_task_queue(queue)
-      self.task_queue = queue.constantize
+      self.task_queue = queue
     end
 
   end
