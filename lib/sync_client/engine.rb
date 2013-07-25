@@ -1,10 +1,8 @@
 module SyncClient
   class Engine < ::Rails::Engine
-    isolate_namespace SyncClient
-    config.eager_load_paths += paths["app/models"].existent
 
     initializer "sync_client.eager_load", after: :set_autoload_paths do |app|
-      eager_load_sync_client if threadsafe?(app.config)
+         if threadsafe?(app.config)
     end
 
     def eager_load_sync_client
