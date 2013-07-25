@@ -10,7 +10,7 @@ class PubMessageTest < ActiveSupport::TestCase
       end
 
       should "queue publish" do
-        SyncClient.priority_queue.expects(:enqueue).with(Jobs::SyncClientJobs::Publish, @message).returns(true)
+        SyncClient.task_queue.expects(:enqueue).with(Jobs::SyncClientJobs::Publish, @message).returns(true)
         @message.publish
       end
 

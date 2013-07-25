@@ -34,14 +34,14 @@ module SyncClient
   end
 
   def self.logger
-    config.logger
+    config.sync_logger
   end
 
   def self.queue_suffix
-    config.queue_suffix
+    config.suffix
   end
 
-  def self.priority_queue
-    config.priority_queue
+  def self.task_queue
+    config.task_queue
   end
 end
