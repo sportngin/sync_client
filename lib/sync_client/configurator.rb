@@ -1,4 +1,8 @@
 require 'sync_client/configurators/message_handlers'
+require 'sync_client/task_queue/delayed_job'
+require 'sync_client/task_queue/resque'
+require 'sync_client/task_queue/inline_task_queue'
+
 module SyncClient
   class Configurator
     private
@@ -18,7 +22,7 @@ module SyncClient
     def initialize
       self.message_handlers = Configurators::MessageHandlers.new
       self.sync_logger = Logger.new(STDOUT)
-      self.task_queue = SyncClient::InlineQueue
+      self.task_queue = SyncClient::InlineTaskQueue
     end
 
     def queuel
@@ -42,7 +46,12 @@ module SyncClient
     end
 
     def background_task_queue(queue)
-      self.task_queue = queue
+      case queue
+      when :resque
+        self.task_queue = SyncClient::Resque
+      when :delayed_job
+        self.task_queue = SyncClient::DelayedJob
+      end
     end
 
   end

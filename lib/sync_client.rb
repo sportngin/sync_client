@@ -9,7 +9,6 @@ require "sync_client/engine"
 require 'sync_client/configurator'
 require 'sync_client/worker'
 require 'sync_client/poller'
-require 'sync_client/inline_queue'
 
 module SyncClient
 
