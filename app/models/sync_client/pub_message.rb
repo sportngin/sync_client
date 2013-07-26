@@ -2,7 +2,7 @@ module SyncClient
   class PubMessage < Message
 
     def publish
-      SyncClient.task_queue.enqueue(Jobs::SyncClientJobs::Publish, self)
+      SyncClient.background_task_queue.enqueue(Jobs::SyncClientJobs::Publish, self)
     end
 
     def synchronous_publish
