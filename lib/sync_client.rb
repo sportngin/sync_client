@@ -40,7 +40,7 @@ module SyncClient
     config.suffix
   end
 
-  def self.task_queue
+  def self.background_task_queue
     config.task_queue
   end
 end
