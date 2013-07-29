@@ -46,12 +46,7 @@ module SyncClient
     end
 
     def background_task_queue(queue)
-      case queue
-      when :resque
-        self.task_queue = SyncClient::Resque
-      when :delayed_job
-        self.task_queue = SyncClient::DelayedJob
-      end
+      self.task_queue = Queue
     end
 
   end
