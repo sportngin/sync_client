@@ -6,7 +6,7 @@ module SyncClient
     end
 
     def eager_load_sync_client
-      paths["app/models"].existent.each do |load_path|
+      paths["app/models"].each do |load_path|
         matcher = /\A#{Regexp.escape(load_path)}\/(.*)\.rb\Z/
         Dir.glob("#{load_path}/**/*.rb").sort.each do |file|
           require_dependency file.sub(matcher, '\1')
