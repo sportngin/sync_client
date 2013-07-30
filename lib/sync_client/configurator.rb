@@ -46,7 +46,7 @@ module SyncClient
     end
 
     def background_task_queue(queue)
-      self.task_queue = Queue
+      self.task_queue = queue
     end
 
   end
