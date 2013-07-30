@@ -1,8 +1,6 @@
 module Jobs
   module SyncClientJobs
     class Publish
-      include Resque::Plugins::UniqueJob
-      extend ::Resque::Metrics
 
       @queue = :high
 
