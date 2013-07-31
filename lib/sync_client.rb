@@ -9,6 +9,7 @@ require "sync_client/engine"
 require 'sync_client/configurator'
 require 'sync_client/worker'
 require 'sync_client/poller'
+
 module SyncClient
 
   def self.version_string
@@ -32,10 +33,14 @@ module SyncClient
   end
 
   def self.logger
-    config.logger
+    config.sync_logger
   end
 
   def self.queue_suffix
-    config.queue_suffix
+    config.suffix
+  end
+
+  def self.background_task_queue
+    config.task_queue
   end
 end
