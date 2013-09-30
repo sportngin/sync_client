@@ -35,7 +35,7 @@ class Team
     # options:
     #   to: name of queue for publishing (required)
     #   for: callbacks for publishing (default: :create, :update, :destroy)
-    #   if/less: condition for publishing
+    #   if/unless: condition for publishing
 end
 ```
 
