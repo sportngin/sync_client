@@ -1,4 +1,4 @@
-rvm --create ruby-1.9.3-p327@sync_client
+rvm --create ruby-ruby-2.0.0-p247@sync_client
 # Ensure that Bundler is installed, install it if it is not.
 if ! command -v bundle > /dev/null; then
   gem install bundler
