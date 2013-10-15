@@ -15,7 +15,6 @@ module SyncClient
     end
 
     def threadsafe?(app_config)
-      app_config.preload_frameworks ||
         app_config.cache_classes ||
         !app_config.dependency_loading ||
         app_config.allow_concurrency

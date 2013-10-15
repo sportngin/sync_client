@@ -15,13 +15,19 @@ ActiveRecord::Base.establish_connection :adapter => 'sqlite3', :database => ':me
 ActiveRecord::Schema.define do
   create_table :players, :force => true do |t|
     t.string :name
-    t.integer :id
   end
 
   create_table :games, :force => true do |t|
     t.string :name
-    t.integer :id
   end
+end
+
+class ActiveSupport::TestCase
+  ActiveRecord::Migration.check_pending! if Rails::VERSION::MAJOR >= 4
+  include Shoulda::Matchers::ActiveRecord
+  extend Shoulda::Matchers::ActiveRecord
+  include Shoulda::Matchers::ActiveModel
+  extend Shoulda::Matchers::ActiveModel
 end
 
 class ActiveSupport::TestCase
