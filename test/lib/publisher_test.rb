@@ -39,5 +39,18 @@ class PublisherTest < ActiveSupport::TestCase
       end
 
     end
+
+    context "PORO (Plain Old Ruby Object)" do
+      subject { Class.new }
+
+      should 'respond to all the same methods as ActiveRecord::Base object' do
+        subject.extend(SyncClient::Publisher)
+        assert subject.respond_to?(:queue_publisher), "PORO didn't respond to queue_publisher"
+        assert subject.respond_to?(:publish_update), "PORO didn't respond to publish_update"
+        assert subject.respond_to?(:publish_destroy), "PORO didn't respond to publish_destroy"
+        assert subject.respond_to?(:publish_create), "PORO didn't respond to publish_create"
+        assert subject.respond_to?(:publisher_attributes), "PORO didn't respond to publisher_attributes"
+      end
+    end
   end
 end
