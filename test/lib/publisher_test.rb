@@ -40,6 +40,16 @@ class PublisherTest < ActiveSupport::TestCase
 
     end
 
+    context "ActiveRecord::Base Object" do
+      subject { Player }
+
+      should 'apply the ActiveRecord callbacks to the object' do
+        assert subject._update_callbacks.any? { |cb| cb.filter == :publish_update }, ":publish_update callback not included"
+        assert subject._destroy_callbacks.any? { |cb| cb.filter == :publish_destroy }, ":publish_destroy callback not included"
+        assert subject._create_callbacks.any? { |cb| cb.filter == :publish_create }, ":publish_create callback not included"
+      end
+    end
+
     context "PORO (Plain Old Ruby Object)" do
       subject { Class.new }
 
