@@ -33,6 +33,10 @@ module SyncClient
       queue_publisher.publish(:create, self)
     end
 
+    def any_attributes_changed?(attributes)
+      attributes.any?{|attr| send("#{attr}_changed?")}
+    end
+
     def publisher_attributes
       if self.respond_to?(:aliased_fields)
         self.attributes.inject({}) { |attrs, (raw_key, raw_value)|
