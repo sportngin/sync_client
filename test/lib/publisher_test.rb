@@ -39,5 +39,28 @@ class PublisherTest < ActiveSupport::TestCase
       end
 
     end
+
+    context "ActiveRecord::Base Object" do
+      subject { Player }
+
+      should 'apply the ActiveRecord callbacks to the object' do
+        assert subject._update_callbacks.any? { |cb| cb.filter == :publish_update }, ":publish_update callback not included"
+        assert subject._destroy_callbacks.any? { |cb| cb.filter == :publish_destroy }, ":publish_destroy callback not included"
+        assert subject._create_callbacks.any? { |cb| cb.filter == :publish_create }, ":publish_create callback not included"
+      end
+    end
+
+    context "PORO (Plain Old Ruby Object)" do
+      subject { Class.new }
+
+      should 'respond to all the same methods as ActiveRecord::Base object' do
+        subject.extend(SyncClient::Publisher)
+        assert subject.respond_to?(:queue_publisher), "PORO didn't respond to queue_publisher"
+        assert subject.respond_to?(:publish_update), "PORO didn't respond to publish_update"
+        assert subject.respond_to?(:publish_destroy), "PORO didn't respond to publish_destroy"
+        assert subject.respond_to?(:publish_create), "PORO didn't respond to publish_create"
+        assert subject.respond_to?(:publisher_attributes), "PORO didn't respond to publisher_attributes"
+      end
+    end
   end
 end

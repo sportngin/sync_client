@@ -3,9 +3,11 @@ module SyncClient
     extend ActiveSupport::Concern
 
     included do
-      before_update :publish_update
-      after_destroy :publish_destroy
-      after_create :publish_create
+      if self <= ActiveRecord::Base
+        before_update :publish_update
+        after_destroy :publish_destroy
+        after_create :publish_create
+      end
     end
 
     module ClassMethods
