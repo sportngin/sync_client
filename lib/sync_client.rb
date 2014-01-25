@@ -3,6 +3,7 @@ require 'queuel'
 
 require 'sync_client/publisher'
 require 'sync_client/publisher/active_record'
+require 'sync_client/publisher/mongoid'
 require 'sync_client/queue_publisher'
 require 'sync_client/sync_queue'
 require 'sync_client/version'
