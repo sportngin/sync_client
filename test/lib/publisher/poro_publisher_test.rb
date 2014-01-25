@@ -18,20 +18,25 @@ class PoroPublisherTest < ActiveSupport::TestCase
           end
 
           should 'add a publisher to the queue_publisher' do
-            @publisher.expects(:add_publisher).with([], {:to => :test})
+            @publisher.expects(:add_publisher).with([], {:to => :test, :for => :sync})
             subject.publish_to :test
           end
 
+          should 'add a publisher to the queue_publisher with custom :for' do
+            @publisher.expects(:add_publisher).with([], {:to => :test, :for => [:create, :sync]})
+            subject.publish_to :test, :for => [:create, :sync]
+          end
+
           should 'add multiple publishers to the queue_publisher' do
-            @publisher.expects(:add_publisher).with([], {:to => :test1})
-            @publisher.expects(:add_publisher).with([], {:to => :test2})
+            @publisher.expects(:add_publisher).with([], {:to => :test1, :for => :sync})
+            @publisher.expects(:add_publisher).with([], {:to => :test2, :for => :sync})
             subject.publish_to :test1
             subject.publish_to :test2
           end
 
           should 'add multiple publishers in the same line' do
-            @publisher.expects(:add_publisher).with([], {:to => :test1})
-            @publisher.expects(:add_publisher).with([], {:to => :test2})
+            @publisher.expects(:add_publisher).with([], {:to => :test1, :for => :sync})
+            @publisher.expects(:add_publisher).with([], {:to => :test2, :for => :sync})
             subject.publish_to :test1, :test2
           end
         end
@@ -52,9 +57,14 @@ class PoroPublisherTest < ActiveSupport::TestCase
     end
 
     context "#sync" do
-      should 'send #publish to queue_publisher with :create' do
-        @publisher.expects(:publish).with(:create, subject).returns(true)
+      should 'send #publish to queue_publisher with :sync' do
+        @publisher.expects(:publish).with(:sync, subject).returns(true)
         subject.sync
+      end
+
+      should 'send #publish to queue_publisher with :create if action is passed in' do
+        @publisher.expects(:publish).with(:create, subject).returns(true)
+        subject.sync(:create)
       end
     end
 

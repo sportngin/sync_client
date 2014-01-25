@@ -6,7 +6,7 @@ module SyncClient
       module ClassMethods
         def publish_to(*args)
           @queue_publisher ||= SyncClient::QueuePublisher.new
-          options = args.last.is_a?(Hash) ? args.pop : {}
+          options = args.last.is_a?(Hash) ? args.pop : {:for => [:sync]}
           args.each do |end_point|
             @queue_publisher.add_publisher([], options.merge(:to => end_point))
           end
@@ -19,8 +19,8 @@ module SyncClient
         self.class.queue_publisher
       end
 
-      def sync
-        queue_publisher.publish(:create, self)
+      def sync(action=:sync)
+        queue_publisher.publish(action, self)
       end
 
       def publisher_attributes
