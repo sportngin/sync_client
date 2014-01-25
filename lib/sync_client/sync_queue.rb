@@ -10,7 +10,7 @@ module SyncClient
     def initialize(attributes, options)
       @attributes = attributes
       @queue = options[:to]
-      @callbacks = options[:for] || CALLBACK_DEFAULTS
+      @callbacks = options[:for] ? Array(options[:for]) : CALLBACK_DEFAULTS
       @options = options
     end
 
