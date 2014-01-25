@@ -2,7 +2,7 @@ require 'mongoid'
 
 class Stat
   include ::Mongoid::Document
-  include SyncClient::Publisher::Mongoid
+  include SyncClient::Publisher
 
   publish_changes_of :values, :to => :test
 
