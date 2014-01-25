@@ -22,6 +22,10 @@ module SyncClient
       def destroy
         raise NotImplementedError
       end
+
+      def sync
+        raise NotImplementedError
+      end
     end
   end
 end
