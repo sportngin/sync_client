@@ -1,8 +1,12 @@
-# SyncClient
+SyncClient
+==========
 
-This gem simplifies syncing data between services by using a resque queue and a message queue for guaranteed delivery and eventual consistency of data.
+This gem simplifies syncing data between services by using a resque queue and a
+message queue for guaranteed delivery and eventual consistency of data.
 
-## Installation
+
+Installation
+------------
 
 Add this line to your application's Gemfile:
 
@@ -24,9 +28,14 @@ $ rails g sync_client:install
 
 Edit configuation in `config/initializers/sync_client.rb`
 
-## Usage
 
-Within the model you want to publish attributes to a service include something like the following:
+Usage
+-----
+
+### Publisher
+
+Within the model you want to publish attributes to a service include something
+like the following:
 
 ```ruby
 class Team
@@ -40,7 +49,11 @@ end
 ```
 
 
-A priority is used for publishing to ensure eventual delivery if the message queue does not respond. Supported priority queues include Delayed Job and Resque.
+### Poller
+
+A priority is used for publishing to ensure eventual delivery if the message
+queue does not respond. Supported priority queues include Delayed Job and
+Resque.
 
 Run the message queue poller:
 
@@ -50,6 +63,9 @@ $ bundle exec script/sync_client status
 $ bundle exec script/sync_client restart
 $ bundle exec script/sync_client stop
 ```
+
+
+### Service Resource
 
 Define handlers for the all messages such as the following:
 
