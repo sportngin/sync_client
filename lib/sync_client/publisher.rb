@@ -7,9 +7,9 @@ module SyncClient
     extend ActiveSupport::Concern
 
     included do
-      if defined?(::ActiveRecord::Base) and self <= ::ActiveRecord::Base
+      if defined?(::ActiveRecord::Base) && self <= ::ActiveRecord::Base
         include SyncClient::Publisher::ActiveRecord
-      elsif defined?(::Mongoid::Document) and self.included_modules.include?(::Mongoid::Document)
+      elsif defined?(::Mongoid::Document) && self.included_modules.include?(::Mongoid::Document)
         include SyncClient::Publisher::Mongoid
       else
         include SyncClient::Publisher::Poro
