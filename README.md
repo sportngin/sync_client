@@ -97,6 +97,8 @@ Define handlers for the all messages such as the following:
 
 ```ruby
 class Game < SyncClient::ServiceResource::Base
+
+  # Determine what attributes are to be accessible using attr_accessors
   attr_accessor :id
   attr_accessor :starts_at
   attr_accessor :ends_at
