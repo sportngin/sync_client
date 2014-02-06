@@ -71,8 +71,9 @@ end
 And then in a seperate method, you are able to call the `sync` method and fire
 the queue syncing yourself.
 
-The `sync` action is mapped to the ServiceResource by default, but `:create`,
-`:update` and `:destroy` are still availble for you to use as well.
+The `sync` method is mapped to the `:sync` action in the ServiceResource by
+default, but `:create`, `:update` and `:destroy` are still availble for you to
+use as well.
 
 
 ### Poller
@@ -114,9 +115,7 @@ class Game < SyncClient::ServiceResource::Base
 
   def destroy
     game = Game.find(self.id)
-    game.each do |ga|
-      ga.destroy
-    end
+    game.destroy
   end
 end
 ```
