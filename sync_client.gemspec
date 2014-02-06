@@ -21,12 +21,12 @@ Gem::Specification.new do |s|
   s.test_files = Dir["test/**/*"]
   s.require_paths = ["lib"]
 
-  s.add_dependency 'activerecord', "> 3.0"
   s.add_dependency 'activesupport', "> 3.0"
   s.add_dependency 'railties', "> 3.0"
   s.add_dependency "queuel", "~> 0.2.0"
   s.add_dependency "daemons", "~> 1.1.9"
 
+  s.add_development_dependency 'activerecord', "> 3.0"
   s.add_development_dependency "simplecov"
   s.add_development_dependency 'shoulda'
   s.add_development_dependency "sqlite3"
