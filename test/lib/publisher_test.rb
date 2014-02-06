@@ -38,6 +38,17 @@ class PublisherTest < ActiveSupport::TestCase
         @player.save
       end
 
+      context "#any_attributes_changed" do
+        should "return false if no attributes changed" do
+          assert_equal false, @player.any_attributes_changed?([:id, :name])
+        end
+
+        should "return true if any attribute changed" do
+          @player.stubs(:name_changed? => true)
+          assert_equal true, @player.any_attributes_changed?([:id, :name])
+        end
+      end
+
     end
   end
 end

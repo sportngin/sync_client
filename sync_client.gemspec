@@ -27,6 +27,7 @@ Gem::Specification.new do |s|
   s.add_dependency "daemons", "~> 1.1.9"
 
   s.add_development_dependency 'activerecord', "> 3.0"
+  s.add_development_dependency 'mongoid', '~> 4.0.0.alpha'
   s.add_development_dependency "simplecov"
   s.add_development_dependency 'shoulda'
   s.add_development_dependency "sqlite3"
