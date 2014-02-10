@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class ActiveRecordClass < ActiveRecord::Base
-  include SyncClient::Publisher::ActiveRecord
+  include SyncClient::Publisher
 
   self.table_name = :players
   publish_changes_of :name, :to => :test

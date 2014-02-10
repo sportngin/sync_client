@@ -2,7 +2,7 @@ require 'sync_client/publisher/base'
 
 module SyncClient
   module Publisher
-    module Mongoid
+    module MongoidPublisher
       extend ActiveSupport::Concern
 
       included do

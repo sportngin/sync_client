@@ -1,6 +1,6 @@
 module SyncClient
   module Publisher
-    module Poro
+    module PoroPublisher
       extend ActiveSupport::Concern
 
       module ClassMethods

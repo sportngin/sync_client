@@ -2,7 +2,7 @@ require 'sync_client/publisher/base'
 
 module SyncClient
   module Publisher
-    module ActiveRecord
+    module ActiveRecordPublisher
       extend ActiveSupport::Concern
       included do
         include SyncClient::Publisher::Base
