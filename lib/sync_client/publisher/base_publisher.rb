@@ -1,6 +1,6 @@
 module SyncClient
   module Publisher
-    module Base
+    module BasePublisher
       extend ActiveSupport::Concern
 
       included do

@@ -1,4 +1,4 @@
-require 'sync_client/publisher/base'
+require 'sync_client/publisher/base_publisher'
 
 module SyncClient
   module Publisher
@@ -6,7 +6,7 @@ module SyncClient
       extend ActiveSupport::Concern
 
       included do
-        include SyncClient::Publisher::Base
+        include SyncClient::Publisher::BasePublisher
       end
 
       def any_attributes_changed?(attributes)
