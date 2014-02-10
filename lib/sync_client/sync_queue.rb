@@ -10,7 +10,7 @@ module SyncClient
     def initialize(attributes, options)
       @attributes = attributes
       @queue = options[:to]
-      @callbacks = options[:for] || CALLBACK_DEFAULTS
+      @callbacks = options[:for] ? Array(options[:for]) : CALLBACK_DEFAULTS
       @options = options
     end
 
@@ -19,7 +19,7 @@ module SyncClient
     end
 
     def update?(action, object)
-      action.to_s != 'update' || attributes.any?{|attr| object.send("#{attr}_changed?")}
+      action.to_s != 'update' || object.any_attributes_changed?(attributes)
     end
 
     def resolve_condition(object)

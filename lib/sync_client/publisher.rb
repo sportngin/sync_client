@@ -1,50 +1,18 @@
+require 'sync_client/publisher/active_record'
+require 'sync_client/publisher/mongoid'
+require 'sync_client/publisher/poro'
+
 module SyncClient
   module Publisher
     extend ActiveSupport::Concern
 
     included do
-      before_update :publish_update
-      after_destroy :publish_destroy
-      after_create :publish_create
-    end
-
-    module ClassMethods
-      def publish_changes_of(*attributes, options)
-        @queue_publisher = SyncClient::QueuePublisher.new unless @queue_publisher
-        @queue_publisher.add_publisher(attributes, options)
-      end
-
-      attr_reader :queue_publisher
-    end
-
-    def queue_publisher
-      self.class.queue_publisher
-    end
-
-    def publish_update
-      queue_publisher.publish(:update, self)
-    end
-
-    def publish_destroy
-      queue_publisher.publish(:destroy, self)
-    end
-
-    def publish_create
-      queue_publisher.publish(:create, self)
-    end
-
-    def publisher_attributes
-      if self.respond_to?(:aliased_fields)
-        self.attributes.inject({}) { |attrs, (raw_key, raw_value)|
-          if raw_key =='_id'
-            attrs['id'] = raw_value
-          else
-            attrs[self.aliased_fields.invert.fetch(raw_key) { raw_key }] = raw_value
-          end
-          attrs
-        }
+      if defined?(::ActiveRecord::Base) && self <= ::ActiveRecord::Base
+        include SyncClient::Publisher::ActiveRecord
+      elsif defined?(::Mongoid::Document) && self.included_modules.include?(::Mongoid::Document)
+        include SyncClient::Publisher::Mongoid
       else
-        self.attributes
+        include SyncClient::Publisher::Poro
       end
     end
   end

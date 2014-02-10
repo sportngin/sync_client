@@ -1,8 +1,12 @@
-# SyncClient
+SyncClient
+==========
 
-This gem simplifies syncing data between services by using a resque queue and a message queue for guaranteed delivery and eventual consistency of data.
+This gem simplifies syncing data between services by using a resque queue and a
+message queue for guaranteed delivery and eventual consistency of data.
 
-## Installation
+
+Installation
+------------
 
 Add this line to your application's Gemfile:
 
@@ -24,12 +28,18 @@ $ rails g sync_client:install
 
 Edit configuation in `config/initializers/sync_client.rb`
 
-## Usage
 
-Within the model you want to publish attributes to a service include something like the following:
+Usage
+-----
+
+### Publisher
+
+For models that inherit from `ActiveRecord::Base` or include
+`Mongoid::Document`, to publish attributes to a service, you want include
+something like the following:
 
 ```ruby
-class Team
+class Team < ActiveRecord::Base
   include SyncClient::Publisher
   publish_changes_of :name, :color, to: :queue, for: [:update, :destroy], if: lambda{|team| !team.name.nil?}
     # options:
@@ -39,8 +49,38 @@ class Team
 end
 ```
 
+If you are just working with a "Plain Old Ruby Object", you can do something
+like this:
 
-A priority is used for publishing to ensure eventual delivery if the message queue does not respond. Supported priority queues include Delayed Job and Resque.
+```ruby
+class TeamSchedulerService
+  include SyncClient::Publisher
+  publish_to :queue
+    # options:
+    #   for: callbacks for publishing (default: :sync)
+    #   if/unless: condition for publishing
+
+  def do_some_stuffs
+    # CODEZ
+    sync
+    # return value
+  end
+end
+```
+
+And then in a seperate method, you are able to call the `sync` method and fire
+the queue syncing yourself.
+
+The `sync` method is mapped to the `:sync` action in the ServiceResource by
+default, but `:create`, `:update` and `:destroy` are still availble for you to
+use as well.
+
+
+### Poller
+
+A priority is used for publishing to ensure eventual delivery if the message
+queue does not respond. Supported priority queues include Delayed Job and
+Resque.
 
 Run the message queue poller:
 
@@ -51,10 +91,15 @@ $ bundle exec script/sync_client restart
 $ bundle exec script/sync_client stop
 ```
 
+
+### Service Resource
+
 Define handlers for the all messages such as the following:
 
 ```ruby
 class Game < SyncClient::ServiceResource::Base
+
+  # Determine what attributes are to be accessible using attr_accessors
   attr_accessor :id
   attr_accessor :starts_at
   attr_accessor :ends_at
@@ -70,9 +115,7 @@ class Game < SyncClient::ServiceResource::Base
 
   def destroy
     game = Game.find(self.id)
-    game.each do |ga|
-      ga.destroy
-    end
+    game.destroy
   end
 end
 ```

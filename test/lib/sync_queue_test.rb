@@ -2,6 +2,13 @@ require 'test_helper'
 
 class SyncQueueTest < ActiveSupport::TestCase
   context "SyncQueue" do
+    context "Initialize" do
+      should 'force callbacks into an array' do
+        sync_queue = SyncClient::SyncQueue.new([:name], :to => :test, :for => :create)
+        assert_equal [:create], sync_queue.callbacks
+      end
+    end
+
     context "Methods" do
       setup do
         @attributes = [:name]
