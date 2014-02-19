@@ -1,5 +1,5 @@
 module SyncClient
-  class SubMessage < Message
+  class SubMessage < SyncClient::Message
     attr_accessor :success
 
     def process

@@ -1,5 +1,5 @@
 module SyncClient
-  class PubMessage < Message
+  class PubMessage < SyncClient::Message
 
     def publish
       SyncClient.background_task_queue.enqueue(Jobs::SyncClientJobs::Publish, self)
