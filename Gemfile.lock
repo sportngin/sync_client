@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    sync_client (0.1.2)
+    sync_client (0.1.3)
       activesupport (> 3.0)
       daemons (~> 1.1.9)
       queuel (~> 0.2)
