@@ -7,7 +7,16 @@ module SyncClient
 
     def synchronous_publish
       with_logging do
-        Queuel.with(queue_with_suffix).push package
+        begin
+          Queuel.with(queue_with_suffix).push package
+        rescue Exception => e
+          # TODO: Log first error
+          if queue_fallback
+            HttpSync.with(queue_fallback).push package
+          else
+            raise e #raise error again
+          end
+        end
       end
     end
 
@@ -29,6 +38,10 @@ module SyncClient
       SyncClient.logger.info("Publishing Message: #{object_type}##{action}")
       SyncClient.logger.info("To: #{queue_with_suffix}")
       yield
+    end
+
+    def queue_fallback
+      ::SyncClient.fallbacks[queue]
     end
   end
 end
