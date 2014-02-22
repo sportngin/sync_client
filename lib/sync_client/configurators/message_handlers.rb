@@ -3,6 +3,7 @@ module SyncClient
   module Configurators
     class MessageHandlers
       attr_reader :message_handlers
+
       def initialize
         @message_handlers = {}.with_indifferent_access
       end
