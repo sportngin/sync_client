@@ -1,6 +1,7 @@
 require 'sync_client/configurators/message_handlers'
 require 'sync_client/task_queue/delayed_job'
 require 'sync_client/task_queue/resque'
+require 'sync_client/task_queue/sidekiq'
 require 'sync_client/task_queue/inline_task_queue'
 
 module SyncClient
