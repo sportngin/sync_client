@@ -29,7 +29,7 @@ module SyncClient
 
     def with_logging(&block)
       SyncClient.logger.info("------------------------------------------")
-      SyncClient.logger.info("Recieved Message: #{object_type}##{action}")
+      SyncClient.logger.info("Received Message: #{object_type}##{action}")
       yield
       SyncClient.logger.info("Error Occured: #{error}") if error
       SyncClient.logger.info("Processed Message: #{!!success}")
