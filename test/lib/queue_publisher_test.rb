@@ -29,6 +29,15 @@ class QueuePublisherTest < ActiveSupport::TestCase
 
         @publisher.publish(:create, @player)
       end
+
+      should "queue message on publish if force=true" do
+        @sync_queue = @publisher.sync_queues.first
+        @sync_queue.stubs(:publishable?).returns(:false)
+        @publisher.expects(:queue_message).with(:create, @player, 'foo').returns(@message)
+        @message.expects(:publish).returns(true)
+
+        @publisher.publish(:create, @player, {force: true})
+      end
     end
   end
 end

@@ -36,21 +36,21 @@ class MongoidPublisherTest < ActiveSupport::TestCase
 
       context "#publish_create" do
         should 'send #publish to queue_publisher with :create' do
-          @publisher.expects(:publish).with(:create, subject).returns(true)
+          @publisher.expects(:publish).with(:create, subject, {}).returns(true)
           subject.publish_create
         end
       end
 
       context "#publish_update" do
         should 'send #publish to queue_publisher with :update' do
-          @publisher.expects(:publish).with(:update, subject).returns(true)
+          @publisher.expects(:publish).with(:update, subject, {}).returns(true)
           subject.publish_update
         end
       end
 
       context "#publish_destroy" do
         should 'send #publish to queue_publisher with :destroy' do
-          @publisher.expects(:publish).with(:destroy, subject).returns(true)
+          @publisher.expects(:publish).with(:destroy, subject, {}).returns(true)
           subject.publish_destroy
         end
       end
