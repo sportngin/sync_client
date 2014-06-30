@@ -22,16 +22,16 @@ module SyncClient
         self.class.queue_publisher
       end
 
-      def publish_create
-        queue_publisher.publish(:create, self)
+      def publish_create(options = {})
+        queue_publisher.publish(:create, self, options)
       end
 
-      def publish_update
-        queue_publisher.publish(:update, self)
+      def publish_update(options = {})
+        queue_publisher.publish(:update, self, options)
       end
 
-      def publish_destroy
-        queue_publisher.publish(:destroy, self)
+      def publish_destroy(options = {})
+        queue_publisher.publish(:destroy, self, options)
       end
     end
   end

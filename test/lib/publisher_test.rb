@@ -22,19 +22,19 @@ class PublisherTest < ActiveSupport::TestCase
 
       should "publish on create" do
         @new_player.stubs(:queue_publisher).returns(@publisher)
-        @publisher.expects(:publish).with(:create, @new_player).returns(true)
+        @publisher.expects(:publish).with(:create, @new_player, {}).returns(true)
         @new_player.save
       end
 
       should "publish on destoy" do
         @player.stubs(:queue_publisher).returns(@publisher)
-        @publisher.expects(:publish).with(:destroy, @player).returns(true)
+        @publisher.expects(:publish).with(:destroy, @player, {}).returns(true)
         @player.destroy
       end
 
       should "publish on update" do
         @player.stubs(:queue_publisher).returns(@publisher)
-        @publisher.expects(:publish).with(:update, @player).returns(true)
+        @publisher.expects(:publish).with(:update, @player, {}).returns(true)
         @player.save
       end
 

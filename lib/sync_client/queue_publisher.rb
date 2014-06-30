@@ -10,10 +10,10 @@ module SyncClient
       self.sync_queues << SyncClient::SyncQueue.new(attributes, options)
     end
 
-    def publish(action, object)
+    def publish(action, object, options = {})
       sync_queues.each do |sync_queue|
         SyncClient.logger.info("#{sync_queue.inspect}")
-        queue_message(action, object, sync_queue.queue).publish if sync_queue.publishable?(action, object)
+        queue_message(action, object, sync_queue.queue).publish if options[:force] || sync_queue.publishable?(action, object)
       end
     end
 
