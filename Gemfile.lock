@@ -1,10 +1,10 @@
 PATH
   remote: .
   specs:
-    sync_client (0.1.5)
+    sync_client (0.1.6)
       activesupport (> 3.0)
       daemons (~> 1.1.9)
-      queuel (~> 0.4.3)
+      queuel (~> 0.4.4)
       railties (> 3.0)
 
 GEM
@@ -64,7 +64,7 @@ GEM
     multi_json (1.8.0)
     optionable (0.2.0)
     origin (2.1.0)
-    queuel (0.4.3)
+    queuel (0.4.4)
       mono_logger
       multi_json
       thread
