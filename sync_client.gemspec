@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.homepage    = "http://www.sportngin.com"
   s.summary     = "Interface to keep attributes synchronized between services using a message queue"
   s.description = "SyncClient is an interface for synchronizing attributes between services.
-    It provides both a means of publishing changes and subscibing to them"
+    It provides both a means of publishing changes and subscribing to them"
   s.license       = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["Rakefile", "README.md"]

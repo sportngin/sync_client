@@ -2,8 +2,7 @@
 [![Build Status][build_status_image]][build_status]
 [![Coverage Status][coverage_status_image]][coverage_status]
 
-This gem simplifies syncing data between services by using a resque queue and a
-message queue for guaranteed delivery and eventual consistency of data.
+This gem simplifies syncing data between services by using delayed job processing and a message queue for guaranteed delivery and eventual consistency of data. It supports inline processing and delayed job processeding by Resque, DelayedJob, and Sidekiq. See [Queuel](https://rubygems.org/gems/sync_client) for this list of supported message queues.
 
 
 ## Installation
