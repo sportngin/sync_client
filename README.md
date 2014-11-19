@@ -1,12 +1,12 @@
-SyncClient
-==========
+# SyncClient
+[![Build Status][build_status_image]][build_status]
+[![Coverage Status][coverage_status_image]][coverage_status]
 
 This gem simplifies syncing data between services by using a resque queue and a
 message queue for guaranteed delivery and eventual consistency of data.
 
 
-Installation
-------------
+## Installation
 
 Add this line to your application's Gemfile:
 
@@ -29,8 +29,7 @@ $ rails g sync_client:install
 Edit configuation in `config/initializers/sync_client.rb`
 
 
-Usage
------
+## Usage
 
 ### Publisher
 
@@ -120,4 +119,16 @@ class Game < SyncClient::ServiceResource::Base
 end
 ```
 
+## Contributing
+
+1. Fork it ( https://github.com/[my-github-username]/sync_client/fork )
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create a new Pull Request
+
+[build_status]: https://travis-ci.org/sportngin/sync_client
+[build_status_image]: https://travis-ci.org/sportngin/sync_client.svg?branch=master
+[coverage_status]: https://coveralls.io/r/sportngin/sync_client
+[coverage_status_image]: https://img.shields.io/coveralls/sportngin/sync_client.svg
 
