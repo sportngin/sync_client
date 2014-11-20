@@ -28,11 +28,11 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency 'activerecord', "> 3.0"
   s.add_development_dependency 'mongoid', '~> 4.0.0.alpha'
-  s.add_development_dependency 'shoulda'
-  s.add_development_dependency "sqlite3"
-  s.add_development_dependency "mocha"
-  s.add_development_dependency "rdoc"
-  s.add_development_dependency "simplecov"
-  s.add_development_dependency 'simplecov-gem-adapter'
-  s.add_development_dependency "coveralls"
+  s.add_development_dependency 'shoulda', "~> 3.5.0"
+  s.add_development_dependency "sqlite3", "~> 1.3.8"
+  s.add_development_dependency "mocha", "~> 0.14.0"
+  s.add_development_dependency "rdoc", "~> 4.0.1"
+  s.add_development_dependency "simplecov", "> 0.7.0"
+  s.add_development_dependency 'simplecov-gem-adapter', "> 1.0.0"
+  s.add_development_dependency "coveralls", "> 0.7.0"
 end
