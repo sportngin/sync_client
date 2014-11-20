@@ -27,6 +27,26 @@ $ rails g sync_client:install
 
 Edit configuation in `config/initializers/sync_client.rb`
 
+## Configuration
+
+The SyncClient configuration file is where the message queue creditials, the background task queue, and the message handler definitions. Note that any message that does not match a defined handler is simply dropped from the queue.
+
+```ruby
+SyncClient.config do |config|
+
+  config.queuel do |c|
+    # c.default_queue 'VenueService'
+    # c.credentials token: 'asdufasdf8a7sd8fa7sdf', project_id: 'project_id'
+    # c.engine :iron_mq
+  end
+  # config.background_task_queue SyncClient::Resque #or SyncClient::DelayedJob or write your own.
+  # config.queue_suffix 'suffix'
+  # config.logger Logger.new
+  # config.add_message_handler object_name, handler_class, actions
+  # config.add_message_handler 'Service::Game', 'Service::Game', [:update, :create, :destroy]
+end
+```
+
 
 ## Usage
 
@@ -76,10 +96,6 @@ use as well.
 
 ### Poller
 
-A priority is used for publishing to ensure eventual delivery if the message
-queue does not respond. Supported priority queues include Delayed Job and
-Resque.
-
 Run the message queue poller:
 
 ```bash
@@ -92,28 +108,30 @@ $ bundle exec script/sync_client stop
 
 ### Service Resource
 
-Define handlers for the all messages such as the following:
+Message handlers for the actions are then defined matching the handler class set in the configuration file where each method corresponds to the message type as follows:
 
 ```ruby
-class Game < SyncClient::ServiceResource::Base
-
-  # Determine what attributes are to be accessible using attr_accessors
-  attr_accessor :id
-  attr_accessor :starts_at
-  attr_accessor :ends_at
-
-  def create
-    Game.create(:game_id => self.id, :starts_at => self.starts_at, :ends_at => self.ends_at)
-  end
-
-  def update
-    game = Game.find(self.id).first
-    game.update_attributes(:starts_at => self.starts_at, :ends_at => self.ends_at)
-  end
-
-  def destroy
-    game = Game.find(self.id)
-    game.destroy
+module Service
+  class Game < SyncClient::ServiceResource::Base
+  
+    # Determine what attributes are to be accessible using attr_accessors
+    attr_accessor :id
+    attr_accessor :starts_at
+    attr_accessor :ends_at
+  
+    def create
+      Game.create(:game_id => self.id, :starts_at => self.starts_at, :ends_at =>  self.ends_at)
+    end
+  
+    def update
+      game = Game.find(self.id).first
+      game.update_attributes(:starts_at => self.starts_at, :ends_at => self.  ends_at)
+    end
+  
+    def destroy
+      game = Game.find(self.id)
+      game.destroy
+    end
   end
 end
 ```
