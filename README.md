@@ -36,7 +36,7 @@ SyncClient.config do |config|
 
   config.queuel do |c|
     # c.default_queue 'VenueService'
-    # c.credentials token: 'asdufasdf8a7sd8fa7sdf', project_id: 'project_id'
+    # c.credentials token: [token], project_id: 'project_id'
     # c.engine :iron_mq
   end
   # config.background_task_queue SyncClient::Resque #or SyncClient::DelayedJob or write your own.
