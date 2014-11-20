@@ -1,13 +1,16 @@
 # Configure Rails Environment
 ENV["RAILS_ENV"] = "test"
 
+require 'simplecov'
+require 'simplecov-gem-adapter'
+
+SimpleCov.start 'gem'
+
 require File.expand_path("../dummy/config/environment.rb",  __FILE__)
 require "rails/test_help"
 require 'test/unit'
 require 'shoulda'
-require 'simplecov'
 require 'sync_client'
-SimpleCov.start 'rails'
 
 Rails.backtrace_cleaner.remove_silencers!
 
@@ -36,4 +39,3 @@ class ActiveSupport::TestCase
     ::SyncClient.logger.stubs(:info).returns(:true)
   end
 end
-

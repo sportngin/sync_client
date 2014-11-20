@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.homepage    = "http://www.sportngin.com"
   s.summary     = "Interface to keep attributes synchronized between services using a message queue"
   s.description = "SyncClient is an interface for synchronizing attributes between services.
-    It provides both a means of publishing changes and subscibing to them"
+    It provides both a means of publishing changes and subscribing to them"
   s.license       = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["Rakefile", "README.md"]
@@ -28,10 +28,11 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency 'activerecord', "> 3.0"
   s.add_development_dependency 'mongoid', '~> 4.0.0.alpha'
-  s.add_development_dependency "simplecov"
-  s.add_development_dependency 'shoulda'
-  s.add_development_dependency "sqlite3"
-  s.add_development_dependency "mocha"
-  s.add_development_dependency "rdoc"
-  s.add_development_dependency 'debugger'
+  s.add_development_dependency 'shoulda', "~> 3.5.0"
+  s.add_development_dependency "sqlite3", "~> 1.3.8"
+  s.add_development_dependency "mocha", "~> 0.14.0"
+  s.add_development_dependency "rdoc", "~> 4.0.1"
+  s.add_development_dependency "simplecov", "> 0.7.0"
+  s.add_development_dependency 'simplecov-gem-adapter', "> 1.0.0"
+  s.add_development_dependency "coveralls", "> 0.7.0"
 end
