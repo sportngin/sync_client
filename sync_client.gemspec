@@ -21,18 +21,18 @@ Gem::Specification.new do |s|
   s.test_files = Dir["test/**/*"]
   s.require_paths = ["lib"]
 
-  s.add_dependency 'activesupport', "~> 3.0"
-  s.add_dependency 'railties', "~> 3.0"
-  s.add_dependency "queuel", "~> 0.4"
-  s.add_dependency "daemons", "~> 1.1"
+  s.add_dependency 'activesupport', "> 3.0"
+  s.add_dependency 'railties', "> 3.0"
+  s.add_dependency "queuel", "~> 0.4.4"
+  s.add_dependency "daemons", "~> 1.1.9"
 
-  s.add_development_dependency 'activerecord', "~> 3.0"
-  s.add_development_dependency 'mongoid', '~> 4.0'
-  s.add_development_dependency 'shoulda', "~> 3.5"
-  s.add_development_dependency "sqlite3", "~> 1.3"
-  s.add_development_dependency "mocha", "~> 0.14"
-  s.add_development_dependency "rdoc", "~> 4.0"
-  s.add_development_dependency "simplecov", "~> 0.7"
-  s.add_development_dependency 'simplecov-gem-adapter', "~> 1.0"
-  s.add_development_dependency "coveralls", "~> 0.7"
+  s.add_development_dependency 'activerecord', "> 3.0"
+  s.add_development_dependency 'mongoid', '~> 4.0.0.alpha'
+  s.add_development_dependency 'shoulda', "~> 3.5.0"
+  s.add_development_dependency "sqlite3", "~> 1.3.8"
+  s.add_development_dependency "mocha", "~> 0.14.0"
+  s.add_development_dependency "rdoc", "~> 4.0.1"
+  s.add_development_dependency "simplecov", "> 0.7.0"
+  s.add_development_dependency 'simplecov-gem-adapter', "> 1.0.0"
+  s.add_development_dependency "coveralls", "> 0.7.0"
 end
