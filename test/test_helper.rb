@@ -12,7 +12,6 @@ require 'test/unit'
 require 'shoulda'
 require 'sync_client'
 
-
 Rails.backtrace_cleaner.remove_silencers!
 
 ActiveRecord::Base.establish_connection :adapter => 'sqlite3', :database => ':memory:'
@@ -40,4 +39,3 @@ class ActiveSupport::TestCase
     ::SyncClient.logger.stubs(:info).returns(:true)
   end
 end
-

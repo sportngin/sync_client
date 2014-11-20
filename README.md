@@ -2,7 +2,7 @@
 [![Build Status][build_status_image]][build_status]
 [![Coverage Status][coverage_status_image]][coverage_status]
 
-This gem simplifies syncing data between services by using delayed job processing and a message queue for guaranteed delivery and eventual consistency. SyncClient defines messages based on a resource and action system to simplify message publishing and handling. It supports inline processing and delayed job processeding by Resque, DelayedJob, and Sidekiq. See [Queuel](https://rubygems.org/gems/sync_client) for this list of supported message queues.
+This gem simplifies syncing data between services by using delayed job processing and a message queue for guaranteed delivery and eventual consistency. SyncClient defines messages based on a resource and action system to simplify message publishing and handling. It supports inline processing and delayed job processeding by Resque, DelayedJob, and Sidekiq. See [Queuel](https://rubygems.org/gems/sync_client) for a list of supported message queues.
 
 
 ## Installation
@@ -29,7 +29,7 @@ Edit configuation in `config/initializers/sync_client.rb`
 
 ## Configuration
 
-SyncClient requires that message queue creditials, a background task queue, and message handler definitions to be defined in the cofiguration file. Note that any message that does not match a defined handler is simply dropped from the queue.
+SyncClient requires that message queue creditials, a background task queue, and message handler definitions to be defined in the configuration file. Note that any message that does not match a defined handler is simply dropped from the queue.
 
 ```ruby
 SyncClient.config do |config|
@@ -88,7 +88,7 @@ And then in a seperate method, you are able to call the `sync` method and fire
 the queue syncing yourself.
 
 The `sync` method is mapped to the `:sync` action in the ServiceResource by
-default, but `:create`, `:update` and `:destroy` are still availble for you to
+default, but `:create`, `:update` and `:destroy` are still available for you to
 use as well.
 
 
