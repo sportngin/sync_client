@@ -9,3 +9,4 @@ test/dummy/.sass-cache
 /coverage/
 .DS_Store
 .idea
+Gemfile.lock
