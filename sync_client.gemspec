@@ -30,6 +30,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'mongoid', '~> 4.0.0.alpha'
   s.add_development_dependency 'shoulda', "~> 3.5.0"
   s.add_development_dependency "sqlite3", "~> 1.3.8"
+  s.add_development_dependency "minitest", "~> 4.0"
   s.add_development_dependency "mocha", "~> 0.14.0"
   s.add_development_dependency "rdoc", "~> 4.0.1"
   s.add_development_dependency "simplecov", "> 0.7.0"
