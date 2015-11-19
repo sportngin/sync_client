@@ -24,8 +24,14 @@ module SyncClient
     @config
   end
 
+  #make these to delagators
+
   def self.handlers
     config.handlers
+  end
+
+  def self.fallbacks
+    config.fallbacks
   end
 
   def self.actions

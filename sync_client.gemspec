@@ -25,6 +25,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'railties', "> 3.0"
   s.add_dependency "queuel", "~> 0.4"
   s.add_dependency "daemons", "~> 1.1.9"
+  s.add_dependency "typhoeus"
 
   s.add_development_dependency 'activerecord', "> 3.0"
   s.add_development_dependency 'mongoid', '~> 4.0.0.alpha'
